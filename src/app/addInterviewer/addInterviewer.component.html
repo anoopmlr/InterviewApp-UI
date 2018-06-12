@@ -1,0 +1,91 @@
+<div class="container">
+  <div *ngIf="!submitted">
+    <h1>Add Recruiter</h1>
+    <form #heroForm="ngForm" (ngSubmit)="onSubmit(heroForm.value)">
+      <div class="form-group">
+        <label for="firstName">First Name</label>
+        <input type="text" class="form-control" name="firstName" ngModel #firstName="ngModel" required>
+        <div class="alert alert-danger" [hidden]="firstName.valid || firstName.pristine">First Name is required</div>
+      </div>
+      <div class="form-group">
+        <label for="lastName">Last Name</label>
+        <input type="text" class="form-control" name="lastName" ngModel #lastName="ngModel" required>
+        <div class="alert alert-danger" [hidden]="lastName.valid || lastName.pristine">Last Name is required</div>
+      </div>
+      <div class="form-group">
+        <label for="gender">Gender</label>
+        <select class="form-control" name="gender" ngModel #gender="ngModel" required>
+          <option *ngFor="let g of genders" [value]="g">{{ g }}</option>
+        </select>
+        <div class="alert alert-danger" [hidden]="gender.valid || gender.pristine">Gender is required</div>
+      </div>
+      <div class="form-group">
+        <label for="techStack">Technology Stack</label>
+        <select class="form-control" name="techStack" ngModel #techStack="ngModel" required>
+          <option *ngFor="let t of techStacks" [value]="t">{{ t }}</option>
+        </select>
+        <div class="alert alert-danger" [hidden]="techStack.valid || techStack.pristine">Technology Stack is required</div>
+      </div>
+      <div class="form-group">
+        <label for="experience">Experience</label>
+        <select class="form-control" name="experience" ngModel #experience="ngModel" required>
+          <option *ngFor="let e of experienceList" [value]="e">{{ e }}</option>
+        </select>
+        <div class="alert alert-danger" [hidden]="experience.valid || experience.pristine">Experience is required</div>
+      </div>
+      <div class="form-group">
+        <label for="communityType">Community Type</label>
+        <select class="form-control" name="communityType" ngModel #communityType="ngModel" required>
+          <option *ngFor="let c of communityTypeList" [value]="c">{{ c }}</option>
+        </select>
+        <div class="alert alert-danger" [hidden]="communityType.valid || communityType.pristine">Community Type is required</div>
+      </div>
+      <div class="form-group">
+        <label for="role">Role</label>
+        <select class="form-control" name="role" ngModel #role="ngModel" required>
+          <option *ngFor="let r of roles" [value]="r">{{ r }}</option>
+        </select>
+        <div class="alert alert-danger" [hidden]="role.valid || role.pristine">Role is required</div>
+      </div>
+      <button type="submit" class="btn btn-default" [disabled]="!heroForm.valid">Submit</button>
+    </form>
+  </div>
+  <div *ngIf="submitted">
+    <h2>You submitted the following:</h2>
+    <div class="row">
+      <div class="col-md-2">First Name</div>
+      <div class="col-md-10 pull-left">{{ form.firstName }}</div>
+    </div>
+    <div class="row">
+      <div class="col-md-2">Last Name</div>
+      <div class="col-md-10 pull-left">{{ form.lastName }}</div>
+    </div>
+    <div class="row">
+      <div class="col-md-2">Gender</div>
+      <div class="col-md-10 pull-left">{{ form.gender }}</div>
+    </div>
+    <div class="row">
+      <div class="col-md-2">Technology Stack</div>
+      <div class="col-md-10 pull-left">{{ form.techStack }}</div>
+    </div>
+    <div class="row">
+      <div class="col-md-2">Experience</div>
+      <div class="col-md-10 pull-left">{{ form.experience }}</div>
+    </div>
+    <div class="row">
+      <div class="col-md-2">Community Type</div>
+      <div class="col-md-10 pull-left">{{ form.communityType }}</div>
+    </div>
+    <div class="row">
+      <div class="col-md-2">Role</div>
+      <div class="col-md-10 pull-left">{{ form.role }}</div>
+    </div>
+    <br />
+    <br />
+    Raw output from form.value:
+    <br />
+    {{ form | json }}
+    <br /><br />
+    <button class="btn btn-default" (click)="submitted=false">Edit</button>
+  </div>
+</div>
